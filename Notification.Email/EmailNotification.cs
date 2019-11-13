@@ -1,10 +1,13 @@
 ﻿namespace Notification.Email
 {
-    public class EmailNotification : INotification
+    public class EmailNotification
     {
-        public NotificationName NotificationName { get; set; }
-        public bool RequiresAction { get; set; }
-        public object Payload { get; set; }
+        public EmailNotification(INotification notification)
+        {
+            this.Notification = notification;
+        }
+
+        public INotification Notification { get; }
         public string FromEmail { get; set; }
         public string FromName { get; set; }
         public string ToEmail { get; set; }

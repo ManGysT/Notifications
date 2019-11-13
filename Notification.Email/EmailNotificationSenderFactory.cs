@@ -1,17 +1,19 @@
-﻿namespace Notification.Email
+﻿using System;
+
+namespace Notification.Email
 {
-    public class EmailNotificationSenderFactory : INotificationSenderFactory<EmailNotification>
+    public class EmailNotificationSenderFactory : INotificationSenderFactory
     {
-        public EmailNotificationSenderFactory(EmailSenderConfiguration configuration)
+        public EmailNotificationSenderFactory(Func<EmailSenderConfiguration> configurationFactory)
         {
-            this.Configuration = configuration;
+            this.ConfigurationFactory = configurationFactory;
         }
 
-        public EmailSenderConfiguration Configuration { get; }
+        public Func<EmailSenderConfiguration> ConfigurationFactory { get; }
 
-        public INotificationSender<EmailNotification> Create()
+        public INotificationSender Create()
         {
-            return new EmailNotificationSender(this.Configuration);
+            return new EmailNotificationSender(this.ConfigurationFactory());
         }
     }
 }

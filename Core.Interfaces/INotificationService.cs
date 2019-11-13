@@ -10,7 +10,7 @@ namespace Core.Interfaces
         void Send(NotificationSendOptions sendOptions, IEnumerable<NotificationRecipient> recipients);
     }
 
-    public class NotificationSendersCollection : Dictionary<NotificationSendMethod, INotificationSender<INotification>>
+    public class NotificationSendersCollection : Dictionary<NotificationSendMethod, INotificationSender>
     {
     }
 

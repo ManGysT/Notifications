@@ -1,9 +1,10 @@
-﻿using System.Net.Mail;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace Notification.Email
 {
-    public class EmailNotificationSender : INotificationSender<EmailNotification>
+    public class EmailNotificationSender : NotificationSender<EmailNotification>
     {
         private readonly EmailSenderConfiguration configuration;
 
@@ -12,13 +13,14 @@ namespace Notification.Email
             this.configuration = configuration;
         }
 
-        public Task Send(EmailNotification notification)
+        protected override EmailNotification CreateNotification(INotification notification, INotificationRecipient recipient)
         {
-            var smtp = new SmtpClient
-            {
-                Host = this.configuration.SmtpHost,
-                Port = this.configuration.SmtpPort,
-            };
+            return new EmailNotification(notification);
+        }
+
+        protected override void Execute(IEnumerable<EmailNotification> notifications)
+        {
+            Console.WriteLine($"Sending email to {notification.ToEmail}");
             var mailMessage = new MailMessage
             {
                 From = string.IsNullOrEmpty(notification.FromEmail)
@@ -30,6 +32,15 @@ namespace Notification.Email
             mailMessage.Body = notification.Payload != null ? notification.Payload.ToString() : string.Empty;
 
             return smtp.SendMailAsync(mailMessage);
+        }
+
+        private SmtpClient GetSmtp()
+        {
+            return new SmtpClient
+            {
+                Host = this.configuration.SmtpHost,
+                Port = this.configuration.SmtpPort,
+            };
         }
     }
 }

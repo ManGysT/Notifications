@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Notification
 {
-    public interface INotificationSender<TNotification> where TNotification : INotification
+    public interface INotificationSender
     {
-        Task Send(TNotification notification);
+        void Send(INotification notification, IEnumerable<INotificationRecipient> recipients);
     }
 }

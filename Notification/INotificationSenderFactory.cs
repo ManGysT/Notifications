@@ -1,7 +1,7 @@
 ﻿namespace Notification
 {
-    public interface INotificationSenderFactory<TNotification> where TNotification : INotification
+    public interface INotificationSenderFactory
     {
-        INotificationSender<TNotification> Create();
+        INotificationSender Create();
     }
 }

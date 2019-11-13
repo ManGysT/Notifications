@@ -1,6 +1,7 @@
 ﻿using Core.Interfaces;
 using Notification;
 using Notification.Email;
+using System;
 using System.Collections.Generic;
 
 namespace ConsoleApp2
@@ -18,13 +19,13 @@ namespace ConsoleApp2
         {
             foreach (var sendMethod in sendOptions.Methods.Enumerate())
             {
-                INotificationSender<INotification> sender;
-                if (this.senders.TryGetValue(sendMethod, out sender))
+                INotificationSender sender;
+                if (!this.senders.TryGetValue(sendMethod, out sender))
                 {
                     throw new System.Exception("Sender not found");
                 }
 
-                //sender.Send(sendOptions);
+                sender.Send(sendOptions);
             }
         }
     }
@@ -35,9 +36,9 @@ namespace ConsoleApp2
         {
             var senders = new NotificationSendersCollection();
 
-            var emailSenderConfig = new EmailSenderConfiguration();
-            var emailSenderFactory = new EmailNotificationSenderFactory(emailSenderConfig);
-            senders.Add(NotificationSendMethod.Email, (INotificationSender<INotification>)emailSenderFactory.Create());
+            Func<EmailSenderConfiguration> emailSenderConfigFactory = () => new EmailSenderConfiguration();
+            var emailSenderFactory = new EmailNotificationSenderFactory(emailSenderConfigFactory);
+            senders.Add(NotificationSendMethod.Email, emailSenderFactory.Create());
 
             return new NotificationService(senders);
         }
