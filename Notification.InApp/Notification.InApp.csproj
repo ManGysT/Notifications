@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D5C21C08-9ADF-4F86-81F5-A720F1447949}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleApp2</RootNamespace>
-    <AssemblyName>ConsoleApp2</AssemblyName>
+    <ProjectGuid>{628C948D-3653-40A1-927D-644811EBA0A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Notification.InApp</RootNamespace>
+    <AssemblyName>Notification.InApp</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,26 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NotificationService.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="InAppNotification.cs" />
+    <Compile Include="InAppNotificationSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core.Interfaces\Core.Interfaces.csproj">
-      <Project>{a8999f6d-bf0d-46cd-8f86-c36a31795409}</Project>
-      <Name>Core.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Notification.Email\Notification.Email.csproj">
-      <Project>{3d38c931-e6fd-43ee-b18c-6dc2ecac1824}</Project>
-      <Name>Notification.Email</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Notification.InApp\Notification.InApp.csproj">
-      <Project>{628C948D-3653-40A1-927D-644811EBA0A7}</Project>
-      <Name>Notification.InApp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Notification\Notification.csproj">
       <Project>{659cc79b-7b49-46de-b299-ff9de41fda07}</Project>
       <Name>Notification</Name>

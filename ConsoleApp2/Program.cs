@@ -9,7 +9,7 @@ namespace ConsoleApp2
         static void Main(string[] args)
         {
             var service = NotificationServiceFactory.Create();
-            var notificationSendOptions = new NotificationSendOptions(NotificationSendMethod.Email)
+            var notificationSendOptions = new NotificationSendOptions(NotificationSendMethod.All)
             {
                 Notification = new Notification.Notification
                 {
@@ -35,7 +35,7 @@ namespace ConsoleApp2
 
             service.Send(notificationSendOptions, recipients);
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 }

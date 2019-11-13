@@ -2,6 +2,7 @@
 using Core.Interfaces.Notifications;
 using Notification;
 using Notification.Email;
+using Notification.InApp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace ConsoleApp2
                 sendTasks[Array.IndexOf(sendMethods, sendMethod)] = sendTask;
             }
 
-            Task.WaitAll(sendTasks);
+            //Task.WaitAll(sendTasks);
         }
     }
 
@@ -57,7 +58,8 @@ namespace ConsoleApp2
         {
             var senders = new NotificationSenderCollection
             {
-                { NotificationSendMethod.Email, new EmailNotificationSender() }
+                { NotificationSendMethod.Email, new EmailNotificationSender() },
+                { NotificationSendMethod.InApp, new InAppNotificationSender() },
             };
 
             return new NotificationService(senders);

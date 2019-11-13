@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Email", "Notif
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Interfaces", "Core.Interfaces\Core.Interfaces.csproj", "{A8999F6D-BF0D-46CD-8F86-C36A31795409}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.InApp", "Notification.InApp\Notification.InApp.csproj", "{628C948D-3653-40A1-927D-644811EBA0A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A8999F6D-BF0D-46CD-8F86-C36A31795409}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8999F6D-BF0D-46CD-8F86-C36A31795409}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8999F6D-BF0D-46CD-8F86-C36A31795409}.Release|Any CPU.Build.0 = Release|Any CPU
+		{628C948D-3653-40A1-927D-644811EBA0A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{628C948D-3653-40A1-927D-644811EBA0A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{628C948D-3653-40A1-927D-644811EBA0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{628C948D-3653-40A1-927D-644811EBA0A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

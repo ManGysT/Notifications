@@ -7,9 +7,9 @@ namespace Core.Interfaces.Notifications
     {
         None = 0,
         Email = 1,
-        //InApp = 2,
+        InApp = 2,
 
-        //All = Email | InApp
+        All = Email | InApp
     }
 
     public static class NotificationSendMethodExtensions
@@ -23,7 +23,7 @@ namespace Core.Interfaces.Notifications
 
             return Enum.GetValues(typeof(NotificationSendMethod))
                 .Cast<NotificationSendMethod>()
-                .Where(x => x != NotificationSendMethod.None)
+                .Where(x => x != NotificationSendMethod.None && x != NotificationSendMethod.All)
                 .Where(x => methods.HasFlag(x))
                 .ToArray();
         }
