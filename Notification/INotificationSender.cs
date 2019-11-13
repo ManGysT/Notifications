@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Notification
 {
     public interface INotificationSender
     {
-        void Send(INotification notification, IEnumerable<INotificationRecipient> recipients);
+        Task Send(Notification notification, IEnumerable<INotificationRecipient> recipients);
     }
 }

@@ -2,12 +2,12 @@
 {
     public class EmailNotification
     {
-        public EmailNotification(INotification notification)
+        public EmailNotification(Notification notification)
         {
             this.Notification = notification;
         }
 
-        public INotification Notification { get; }
+        public Notification Notification { get; }
         public string FromEmail { get; set; }
         public string FromName { get; set; }
         public string ToEmail { get; set; }

@@ -1,24 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Notification
 {
-    public abstract class NotificationSender<TNotification> : INotificationSender where TNotification : class
+    public abstract class NotificationSender<TNotification> : INotificationSender
     {
-        protected NotificationSender()
+        public Task Send(Notification notification, IEnumerable<INotificationRecipient> recipients)
         {
+            Console.WriteLine($"Sending '{notification.NotificationName}' notification to {recipients.Count()} recipients.");
+
+            return Task.CompletedTask;
         }
-
-        public virtual void Send(INotification notification, IEnumerable<INotificationRecipient> recipients)
-        {
-            var notificationsToSend = recipients
-                .Select(x => this.CreateNotification(notification, x));
-
-            this.Execute(notificationsToSend);
-        }
-
-        protected abstract TNotification CreateNotification(INotification notification, INotificationRecipient recipient);
-
-        protected abstract void Execute(IEnumerable<TNotification> notifications);
     }
 }
