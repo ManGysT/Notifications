@@ -11,7 +11,7 @@ namespace ConsoleApp2
             var service = NotificationServiceFactory.Create();
             var notificationSendOptions = new NotificationSendOptions(NotificationSendMethod.All)
             {
-                Notification = new Notification.Notification
+                Notification = new Notification.INotification
                 {
                     NotificationName = Notification.NotificationName.DealCloseRequest,
                     RequiresAction = true,

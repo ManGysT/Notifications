@@ -13,7 +13,7 @@ namespace Notification.InApp
                 .ContinueWith((t) => Console.WriteLine($"Sending {notifications.Count()} dls notification(s)..."));
         }
 
-        protected override InAppNotification NotificationFactory(Notification notification, INotificationRecipient recipient)
+        protected override InAppNotification NotificationFactory(INotification notification, INotificationRecipient recipient)
         {
             return new InAppNotification(notification);
         }

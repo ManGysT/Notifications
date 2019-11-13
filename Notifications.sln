@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Interfaces", "Core.Int
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.InApp", "Notification.InApp\Notification.InApp.csproj", "{628C948D-3653-40A1-927D-644811EBA0A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{D13DAB5C-E562-49AF-9272-09C0584F84DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{628C948D-3653-40A1-927D-644811EBA0A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{628C948D-3653-40A1-927D-644811EBA0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{628C948D-3653-40A1-927D-644811EBA0A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D13DAB5C-E562-49AF-9272-09C0584F84DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D13DAB5C-E562-49AF-9272-09C0584F84DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D13DAB5C-E562-49AF-9272-09C0584F84DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D13DAB5C-E562-49AF-9272-09C0584F84DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

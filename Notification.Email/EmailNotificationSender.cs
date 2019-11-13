@@ -13,7 +13,7 @@ namespace Notification.Email
                 .ContinueWith((t) => Console.WriteLine($"Sending {notifications.Count()} email(s)..."));
         }
 
-        protected override EmailNotification NotificationFactory(Notification notification, INotificationRecipient recipient)
+        protected override EmailNotification NotificationFactory(INotification notification, INotificationRecipient recipient)
         {
             return new EmailNotification(notification)
             {

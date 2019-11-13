@@ -7,7 +7,7 @@ namespace Notification
 {
     public abstract class NotificationSender<TNotification> : INotificationSender
     {
-        public Task Send(Notification notification, IEnumerable<INotificationRecipient> recipients)
+        public Task Send(INotification notification, IEnumerable<INotificationRecipient> recipients)
         {
             if (!recipients.Any())
             {
@@ -24,6 +24,6 @@ namespace Notification
 
         protected abstract Task Execute(IEnumerable<TNotification> notifications);
 
-        protected abstract TNotification NotificationFactory(Notification notification, INotificationRecipient recipient);
+        protected abstract TNotification NotificationFactory(INotification notification, INotificationRecipient recipient);
     }
 }

@@ -8,11 +8,11 @@ namespace Notification.InApp
 {
     public class InAppNotification
     {
-        public InAppNotification(Notification notification)
+        public InAppNotification(INotification notification)
         {
             this.Notification = notification;
         }
 
-        public Notification Notification { get; }
+        public INotification Notification { get; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Core.Interfaces.Notifications
+﻿using Notification;
+
+namespace Core.Interfaces.Notifications
 {
     public class NotificationSendOptions
     {
@@ -8,6 +10,6 @@
         }
 
         public NotificationSendMethod SendMethod { get; }
-        public Notification.Notification Notification { get; set; }
+        public INotification Notification { get; set; }
     }
 }
