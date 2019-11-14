@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{659CC79B-7B49-46DE-B299-FF9DE41FDA07}</ProjectGuid>
+    <ProjectGuid>{33E027FC-127E-409E-BAD4-19B7F6B4134D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Notification</RootNamespace>
-    <AssemblyName>Notification</AssemblyName>
+    <RootNamespace>Core.Services</RootNamespace>
+    <AssemblyName>Core.Services</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,12 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INotification.cs" />
-    <Compile Include="INotificationRecipient.cs" />
-    <Compile Include="INotificationSender.cs" />
-    <Compile Include="NotificationSender.cs" />
+    <Compile Include="Logger\ConsoleLogger.cs" />
+    <Compile Include="NotificationsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Interfaces\Core.Interfaces.csproj">
+      <Project>{A8999F6D-BF0D-46CD-8F86-C36A31795409}</Project>
+      <Name>Core.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notification.Core\Notification.csproj">
+      <Project>{659CC79B-7B49-46DE-B299-FF9DE41FDA07}</Project>
+      <Name>Notification</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

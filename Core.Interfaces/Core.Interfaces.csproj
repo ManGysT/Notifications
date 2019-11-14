@@ -41,15 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILogger.cs" />
     <Compile Include="INotificationService.cs" />
-    <Compile Include="Notifications\NotificationRecipient.cs" />
-    <Compile Include="Notifications\NotificationSendMethod.cs" />
-    <Compile Include="Notifications\NotificationSendOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Notification\Notification.csproj">
-      <Project>{659cc79b-7b49-46de-b299-ff9de41fda07}</Project>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{3723F890-830D-4B75-A28F-98B0332473AD}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notification.Core\Notification.csproj">
+      <Project>{659CC79B-7B49-46DE-B299-FF9DE41FDA07}</Project>
       <Name>Notification</Name>
     </ProjectReference>
   </ItemGroup>

@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Notification\Notification.csproj">
+    <ProjectReference Include="..\Notification.Core\Notification.csproj">
       <Project>{659cc79b-7b49-46de-b299-ff9de41fda07}</Project>
       <Name>Notification</Name>
     </ProjectReference>

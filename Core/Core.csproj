@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D5C21C08-9ADF-4F86-81F5-A720F1447949}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleApp2</RootNamespace>
-    <AssemblyName>ConsoleApp2</AssemblyName>
+    <ProjectGuid>{3723F890-830D-4B75-A28F-98B0332473AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,40 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core.Interfaces\Core.Interfaces.csproj">
-      <Project>{a8999f6d-bf0d-46cd-8f86-c36a31795409}</Project>
-      <Name>Core.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core.Services\Core.Services.csproj">
-      <Project>{33E027FC-127E-409E-BAD4-19B7F6B4134D}</Project>
-      <Name>Core.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{3723F890-830D-4B75-A28F-98B0332473AD}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dealius.Notifications\Dealius.Notifications.csproj">
-      <Project>{94C913E5-D5F5-4B8B-80C2-F0F73409A770}</Project>
-      <Name>Dealius.Notifications</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Notification.Core\Notification.csproj">
-      <Project>{659cc79b-7b49-46de-b299-ff9de41fda07}</Project>
+      <Project>{659CC79B-7B49-46DE-B299-FF9DE41FDA07}</Project>
       <Name>Notification</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Notification.Email\Notification.Email.csproj">
-      <Project>{3d38c931-e6fd-43ee-b18c-6dc2ecac1824}</Project>
-      <Name>Notification.Email</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Notification.InApp\Notification.InApp.csproj">
-      <Project>{628C948D-3653-40A1-927D-644811EBA0A7}</Project>
-      <Name>Notification.InApp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
