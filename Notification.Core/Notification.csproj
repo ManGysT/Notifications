@@ -48,7 +48,6 @@
     <Compile Include="INotificationRecipient.cs" />
     <Compile Include="INotificationSender.cs" />
     <Compile Include="NotificationSender.cs" />
-    <Compile Include="NotificationSendMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,43 +1,51 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Notification
 {
-    public abstract class NotificationSender<TSenderNotification> : INotificationSender
+    public abstract class NotificationSender<TRecipient> : INotificationSender
+        where TRecipient : INotificationRecipient
     {
+        private readonly List<TRecipient> invalidRecpients = new List<TRecipient>();
+
         public NotificationSender()
         {
         }
 
-        public abstract NotificationSendMethod SendMethod { get; }
-
-        public Task Send(INotification notification, IEnumerable<INotificationRecipient> recipients)
+        public async Task Send(INotification notification, IEnumerable<INotificationRecipient> recipients)
         {
-            var validRecipients = recipients
-                .Where(this.IsRecipientValid);
+            if (!this.SupportsNotification(notification))
+            {
+                Console.WriteLine($"Notification '{notification.GetName()}' not supported by '{this.GetType().Name}'");
+                return;
+            }
+
+            var senderRecipients = recipients.Cast<TRecipient>();
+            var validRecipients = senderRecipients
+                .Where(x => this.IsRecipientValid(x));
+
+            this.invalidRecpients.AddRange(senderRecipients.Except(validRecipients));
 
             if (!validRecipients.Any())
             {
-                return Task.CompletedTask;
+                return;
             }
 
-            var notifications = validRecipients
-                .Where(x => x.NotificationEnabled(notification.GetName(), this.SendMethod)) // filter out recipients with turned off notification
-                .Select(x => this.CreateNotification(notification, x));
-
-            if (!notifications.Any())
-            {
-                return Task.CompletedTask;
-            }
-
-            return this.Execute(notifications);
+            await this.Execute(notification, validRecipients)
+                .ContinueWith(t => Console.WriteLine($"{this.GetInvalidRecipients().Count()} invalid recipients detected."));
         }
 
-        protected abstract TSenderNotification CreateNotification(INotification notification, INotificationRecipient recipient);
+        protected abstract bool SupportsNotification(INotification notification);
 
-        protected abstract bool IsRecipientValid(INotificationRecipient recipient);
+        protected abstract bool IsRecipientValid(TRecipient recipient);
 
-        protected abstract Task Execute(IEnumerable<TSenderNotification> notifications);
+        protected abstract Task Execute(INotification notification, IEnumerable<TRecipient> recipients);
+
+        protected IEnumerable<TRecipient> GetInvalidRecipients()
+        {
+            return this.invalidRecpients;
+        }
     }
 }

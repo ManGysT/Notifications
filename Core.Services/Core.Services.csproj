@@ -54,6 +54,14 @@
       <Project>{659CC79B-7B49-46DE-B299-FF9DE41FDA07}</Project>
       <Name>Notification</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Notification.Email\Notification.Email.csproj">
+      <Project>{3D38C931-E6FD-43EE-B18C-6DC2ECAC1824}</Project>
+      <Name>Notification.Email</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notification.InApp\Notification.InApp.csproj">
+      <Project>{628C948D-3653-40A1-927D-644811EBA0A7}</Project>
+      <Name>Notification.InApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

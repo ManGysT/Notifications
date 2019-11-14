@@ -5,24 +5,32 @@ using System.Threading.Tasks;
 
 namespace Notification.InApp
 {
-    public class InAppNotificationSender : NotificationSender<InAppNotification>
+    public class InAppNotificationSender : NotificationSender<IInAppNotificationRecipient>
     {
-        public override NotificationSendMethod SendMethod { get; } = NotificationSendMethod.InApp;
-
-        protected override InAppNotification CreateNotification(INotification notification, INotificationRecipient recipient)
+        public InAppNotificationSender(InAppNotificationSenderConfig config)
         {
-            return new InAppNotification(notification);
         }
 
-        protected override bool IsRecipientValid(INotificationRecipient recipient)
+        protected override bool SupportsNotification(INotification notification)
         {
-            return recipient.GetDlsUserID() > 0;
+            return false;
         }
 
-        protected override Task Execute(IEnumerable<InAppNotification> notifications)
+        protected override bool IsRecipientValid(IInAppNotificationRecipient recipient)
         {
-            return Task.Run(() => Task.Delay(300))
-                .ContinueWith((t) => Console.WriteLine($"Sending {notifications.Count()} dls notification(s)..."));
+            return recipient.DealiusUserID > 0;
+        }
+
+        protected override async Task Execute(INotification notification, IEnumerable<IInAppNotificationRecipient> recipients)
+        {
+            Console.WriteLine($"Initializing database...");
+
+            await Task.Run(() => Task.Delay(1000))
+                .ContinueWith((t) => Console.WriteLine($"Establishing connection..."))
+                .ContinueWith(async (t) => await Task.Delay(1500))
+                .ContinueWith((t) => Console.WriteLine($"Sending {recipients.Count()} dls notification(s)..."))
+                .ContinueWith(async (t) => await Task.Delay(2500))
+                .ContinueWith((t) => Console.WriteLine($"{recipients.Count()} dls notification(s) successfully sent!"));
         }
     }
 }

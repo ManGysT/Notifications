@@ -15,20 +15,32 @@ namespace ConsoleApp2
                 DealName = "Deal #1",
                 DealProfileUrl = "https://dealius.loc/deals/111/"
             };
-            var recipients = new List<NotificationRecipient>
-            {
-                new NotificationRecipient
-                {
-                    Email = "igortomilov@gmail.com",
-                    FirstNameLastName = "Igor Tomilov",
-                    UserID = 111,
-                    UserNotificationSettingsJson = null,
-                }
-            };
+            var recipients = GetRecipients();
 
             var service = new NotificationsServiceFactory().Create();
+            service.Send(notification, recipients).Wait();
 
+            Console.WriteLine();
+            Console.WriteLine("All notifications sent!");
             Console.ReadKey();
+        }
+
+        static IEnumerable<NotificationRecipient> GetRecipients()
+        {
+            var recipients = new NotificationRecipient[100];
+
+            for (int i = 0; i < recipients.Length; i++)
+            {
+                recipients[i] = new NotificationRecipient
+                {
+                    Email = i % 2 == 1 ? $"igortomilov+{i + 1}@gmail.com" : null,
+                    EmailName = "Igor Tomilov",
+                    DealiusUserID = 111 + i,
+                    UserNotificationSettingsJson = null,
+                };
+            }
+
+            return recipients;
         }
     }
 }

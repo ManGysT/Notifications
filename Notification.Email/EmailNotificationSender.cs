@@ -1,32 +1,50 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Notification.Email
 {
-    public class EmailNotificationSender : NotificationSender<EmailNotification>
+    public class EmailNotificationSender : NotificationSender<IEmailNotificationRecipient>
     {
-        public override NotificationSendMethod SendMethod { get; } = NotificationSendMethod.Email;
+        private readonly ConcurrentQueue<EmailNotification> emails;
+        private readonly Worker[] workers;
 
-        protected override EmailNotification CreateNotification(INotification notification, INotificationRecipient recipient)
+        public EmailNotificationSender(EmailNotificationSenderConfig config)
         {
-            return new EmailNotification(notification)
-            {
-                ToEmail = recipient.GetEmail(),
-                ToName = recipient.GetEmailName(),
-            };
+            this.emails = new ConcurrentQueue<EmailNotification>();
+            this.workers = Enumerable.Range(1, config.MaxConcurrentTasks)
+                .Select(x => new Worker(this.emails))
+                .ToArray();
         }
 
-        protected override bool IsRecipientValid(INotificationRecipient recipient)
+        protected override bool SupportsNotification(INotification notification)
         {
-            return !string.IsNullOrEmpty(recipient.GetEmail());
+            return true;
         }
 
-        protected override Task Execute(IEnumerable<EmailNotification> notifications)
+        protected override bool IsRecipientValid(IEmailNotificationRecipient recipient)
         {
-            return Task.Run(() => Task.Delay(2500))
-                .ContinueWith((t) => Console.WriteLine($"Sending {notifications.Count()} email(s)..."));
+            return !string.IsNullOrEmpty(recipient.Email);
+        }
+
+        protected override async Task Execute(INotification notification, IEnumerable<IEmailNotificationRecipient> recipients)
+        {
+            recipients
+                .Select(x => new EmailNotification
+                {
+                    Notification = notification,
+                    Recipient = x
+                })
+                .ToList()
+                .ForEach(this.emails.Enqueue);
+
+            Console.WriteLine($"Emails to send: {this.emails.Count}");
+
+            await Task.WhenAll(
+                this.workers.Select(x => x.Start())
+                );
         }
     }
 }
