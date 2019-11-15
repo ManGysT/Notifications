@@ -44,6 +44,7 @@
     <Compile Include="IInAppNotificationRecipient.cs" />
     <Compile Include="InAppNotificationSender.cs" />
     <Compile Include="InAppNotificationSenderConfig.cs" />
+    <Compile Include="InAppNotificationSenderFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

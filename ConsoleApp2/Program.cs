@@ -34,7 +34,7 @@ namespace ConsoleApp2
                 recipients[i] = new NotificationRecipient
                 {
                     Email = i % 2 == 1 ? $"igortomilov+{i + 1}@gmail.com" : null,
-                    EmailName = "Igor Tomilov",
+                    FirstNameLastName = "Igor Tomilov",
                     DealiusUserID = 111 + i,
                     UserNotificationSettingsJson = null,
                 };

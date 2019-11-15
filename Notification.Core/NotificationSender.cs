@@ -14,12 +14,12 @@ namespace Notification
         {
         }
 
-        public async Task Send(INotification notification, IEnumerable<INotificationRecipient> recipients)
+        public async Task<NotificationSenderResult> Send(INotification notification, IEnumerable<INotificationRecipient> recipients)
         {
             if (!this.SupportsNotification(notification))
             {
                 Console.WriteLine($"Notification '{notification.GetName()}' not supported by '{this.GetType().Name}'");
-                return;
+                return NotificationSenderResult.Empty();
             }
 
             var senderRecipients = recipients.Cast<TRecipient>();
@@ -30,11 +30,13 @@ namespace Notification
 
             if (!validRecipients.Any())
             {
-                return;
+                return NotificationSenderResult.Empty();
             }
 
             await this.Execute(notification, validRecipients)
                 .ContinueWith(t => Console.WriteLine($"{this.GetInvalidRecipients().Count()} invalid recipients detected."));
+
+            return this.SummariseResult();
         }
 
         protected abstract bool SupportsNotification(INotification notification);
@@ -46,6 +48,14 @@ namespace Notification
         protected IEnumerable<TRecipient> GetInvalidRecipients()
         {
             return this.invalidRecpients;
+        }
+
+        protected virtual NotificationSenderResult SummariseResult()
+        {
+            var result = new NotificationSenderResult();
+            result.InvalidRecipients.AddRange(this.GetInvalidRecipients().Cast<INotificationRecipient>());
+
+            return result;
         }
     }
 }

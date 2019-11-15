@@ -28,10 +28,12 @@ namespace Core.Services
                 return;
             }
 
-            await Task.WhenAll(
-                this.senders
-                    .Select(x => x.Value.Send(notification, recipients))
-            );
+            var tasks = this.senders
+                    .Select(x => x.Value.Send(notification, recipients));
+
+            await Task.WhenAll(tasks);
+
+            // TODO: add handler for tasks results
         }
     }
 
@@ -45,8 +47,8 @@ namespace Core.Services
         {
             var senders = new NotificationSendersCollection
             {
-                { NotificationSendMethod.Email, new EmailNotificationSender(new EmailNotificationSenderConfig()) },
-                { NotificationSendMethod.InApp, new InAppNotificationSender(new InAppNotificationSenderConfig()) },
+                { NotificationSendMethod.Email, new EmailNotificationSenderFactory().Create() },
+                { NotificationSendMethod.InApp, new InAppNotificationSenderFactory().Create() },
             };
             ILogger logger = new ConsoleLogger();
 
@@ -61,7 +63,7 @@ namespace Core.Services
     public class NotificationRecipient : INotificationRecipient, IEmailNotificationRecipient, IInAppNotificationRecipient
     {
         public string Email { get; set; }
-        public string EmailName { get; set; }
+        public string FirstNameLastName { get; set; }
         public int? DealiusUserID { get; set; }
 
         public string UserNotificationSettingsJson { get; set; }

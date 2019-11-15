@@ -5,6 +5,6 @@ namespace Notification
 {
     public interface INotificationSender
     {
-        Task Send(INotification notification, IEnumerable<INotificationRecipient> recipients);
+        Task<NotificationSenderResult> Send(INotification notification, IEnumerable<INotificationRecipient> recipients);
     }
 }
