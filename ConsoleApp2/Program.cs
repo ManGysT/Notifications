@@ -18,7 +18,8 @@ namespace ConsoleApp2
             var recipients = GetRecipients();
 
             var service = new NotificationsServiceFactory().Create();
-            service.Send(notification, recipients).Wait();
+            var task = service.Send(notification, recipients);
+            task.Wait();
 
             Console.WriteLine();
             Console.WriteLine("All notifications sent!");

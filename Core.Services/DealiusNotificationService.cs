@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    public class NotificationsService : INotificationService
+    public class DealiusNotificationService : NotificationService<NotificationRecipient>
     {
         private readonly NotificationSendersCollection senders;
         private readonly ILogger logger;
 
-        public NotificationsService(NotificationSendersCollection senders, ILogger logger)
+        public DealiusNotificationService(NotificationSendersCollection senders, ILogger logger)
         {
             this.senders = senders;
             this.logger = logger;
         }
 
-        public async Task Send(INotification notification, IEnumerable<INotificationRecipient> recipients)
+        protected override async Task Execute(INotification notification, IEnumerable<NotificationRecipient> recipients)
         {
             if (!recipients.Any())
             {
@@ -29,11 +29,22 @@ namespace Core.Services
             }
 
             var tasks = this.senders
-                    .Select(x => x.Value.Send(notification, recipients));
+                    .Select(x => this.CreateSendTask(x.Key, x.Value, notification, recipients));
 
             await Task.WhenAll(tasks);
+        }
 
-            // TODO: add handler for tasks results
+        private async Task CreateSendTask(NotificationSendMethod sendMethod, INotificationSender sender, INotification notification, IEnumerable<NotificationRecipient> recipients)
+        {
+            var senderRecipients = recipients
+                .Where(x => this.IsNotificationEnabled(x, notification, sendMethod));
+
+            await sender.Send(notification, senderRecipients);
+        }
+
+        private bool IsNotificationEnabled(NotificationRecipient recipient, INotification notification, NotificationSendMethod sendMethod)
+        {
+            return true;
         }
     }
 
@@ -52,7 +63,7 @@ namespace Core.Services
             };
             ILogger logger = new ConsoleLogger();
 
-            return new NotificationsService(senders, logger);
+            return new DealiusNotificationService(senders, logger);
         }
     }
 
@@ -60,7 +71,9 @@ namespace Core.Services
     {
     }
 
-    public class NotificationRecipient : INotificationRecipient, IEmailNotificationRecipient, IInAppNotificationRecipient
+    public class NotificationRecipient : INotificationRecipient,
+        IEmailNotificationRecipient,
+        IInAppNotificationRecipient
     {
         public string Email { get; set; }
         public string FirstNameLastName { get; set; }

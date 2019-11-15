@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logger\ConsoleLogger.cs" />
-    <Compile Include="NotificationsService.cs" />
+    <Compile Include="DealiusNotificationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
