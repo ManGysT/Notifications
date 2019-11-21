@@ -1,22 +1,21 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
 namespace Notification.Email
 {
     internal class Worker
     {
-        private readonly ConcurrentQueue<EmailNotification> emailsQueue;
+        private readonly EmailNotificationSender sender;
 
-        public Worker(ConcurrentQueue<EmailNotification> emailsQueue)
+        public Worker(EmailNotificationSender sender)
         {
-            this.emailsQueue = emailsQueue;
+            this.sender = sender;
         }
 
         public async Task Start()
         {
             EmailNotification notification;
-            while (this.emailsQueue.TryDequeue(out notification))
+            while (this.sender.TryDequeue(out notification))
             {
                 await this.SendEmail(notification);
             }

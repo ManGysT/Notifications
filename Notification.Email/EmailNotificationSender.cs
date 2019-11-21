@@ -15,7 +15,7 @@ namespace Notification.Email
         {
             this.emails = new ConcurrentQueue<EmailNotification>();
             this.workers = Enumerable.Range(1, config.MaxConcurrentTasks)
-                .Select(x => new Worker(this.emails))
+                .Select(x => new Worker(this))
                 .ToArray();
         }
 
@@ -45,6 +45,11 @@ namespace Notification.Email
             await Task.WhenAll(
                 this.workers.Select(x => x.Start())
                 );
+        }
+
+        internal bool TryDequeue(out EmailNotification notification)
+        {
+            return this.emails.TryDequeue(out notification);
         }
     }
 }
