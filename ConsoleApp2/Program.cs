@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Core.Services;
+using Core.Services.Notifications;
+using Notification;
+using Notifications;
+using System;
 using System.Collections.Generic;
 
 namespace ConsoleApp2
@@ -7,39 +11,50 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            //var notification = new DealCloseRequestNotification
-            //{
-            //    DealID = 111,
-            //    DealName = "Deal #1",
-            //    DealProfileUrl = "https://dealius.loc/deals/111/"
-            //};
-            //var recipients = GetRecipients();
+            ISettingsManager settings = new DefaultSettingsManager();
 
-            //var service = new NotificationsServiceFactory().Create();
-            //var task = service.Send(notification, recipients);
-            //task.Wait();
+            SendNotification(settings);
 
             Console.WriteLine();
             Console.WriteLine("All notifications sent!");
-            Console.ReadKey();
+            Console.ReadLine();
         }
 
-        //static IEnumerable<NotificationRecipient> GetRecipients()
-        //{
-        //    var recipients = new NotificationRecipient[100];
+        static void SendNotification(ISettingsManager settings)
+        {
+            var notification = GetNotification();
+            var recipients = GetRecipients();
 
-        //    for (int i = 0; i < recipients.Length; i++)
-        //    {
-        //        recipients[i] = new NotificationRecipient
-        //        {
-        //            Email = i % 2 == 1 ? $"igortomilov+{i + 1}@gmail.com" : null,
-        //            FirstNameLastName = "Igor Tomilov",
-        //            DealiusUserID = 111 + i,
-        //            UserNotificationSettingsJson = null,
-        //        };
-        //    }
+            var service = NotificationServiceFactory.Create(settings);
+            var task = service.Send(notification, recipients)
+                ;
+            task.Wait();
+        }
 
-        //    return recipients;
-        //}
+        static INotification GetNotification()
+        {
+            return new MyNotification
+            {
+                UserName = "ManGysT",
+                UserPassword = "473267",
+            };
+        }
+
+        static IEnumerable<IRecipient> GetRecipients()
+        {
+            var recipients = new IRecipient[1];
+
+            for (int i = 0; i < recipients.Length; i++)
+            {
+                recipients[i] = new NotificationRecipient
+                {
+                    Email = i % 2 == 1 || true ? $"igortomilov+{i}@gmail.com" : null,
+                    EmailName = $"Igor Tomilov {i}",
+                    EmailFriendlyName = $"Igor {i}"
+                };
+            }
+
+            return recipients;
+        }
     }
 }
