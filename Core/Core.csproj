@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Interfaces\ISettingsManager.cs" />
     <Compile Include="Common\Interfaces\IUserNotificationService.cs" />
+    <Compile Include="UserNotifications\Models\Notifications\MyNotification.cs" />
     <Compile Include="UserNotifications\Models\UserNotificationSendMethod.cs" />
     <Compile Include="UserNotifications\Models\UserNotification.cs" />
     <Compile Include="UserNotifications\Models\UserNotificationRecipient.cs" />

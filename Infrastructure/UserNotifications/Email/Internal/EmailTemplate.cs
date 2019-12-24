@@ -34,7 +34,7 @@ namespace Infrastructure.UserNotifications.Email.Internal
             return ResourceHelper.Exists(templateName);
         }
 
-        public static string CompileTemplate(UserNotification notification, IEmailRecipient recipient)
+        public static string CompileTemplate(UserNotification notification, UserNotificationRecipient recipient)
         {
             var templateViewModel = GetTemplateViewModel(notification, recipient);
             var templateName = string.Concat("Templates.", notification.GetName());
@@ -43,7 +43,7 @@ namespace Infrastructure.UserNotifications.Email.Internal
             return output;
         }
 
-        public static Models.EmailViewModel GetTemplateViewModel(UserNotification notification, IEmailRecipient recipient)
+        public static Models.EmailViewModel GetTemplateViewModel(UserNotification notification, UserNotificationRecipient recipient)
         {
             return new Models.EmailViewModel
             {

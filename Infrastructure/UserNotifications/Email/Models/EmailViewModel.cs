@@ -1,8 +1,10 @@
-﻿namespace Infrastructure.UserNotifications.Email.Models
+﻿using Core.UserNotifications.Models;
+
+namespace Infrastructure.UserNotifications.Email.Models
 {
     public class EmailViewModel
     {
-        public INotification Data { get; set; }
-        public IEmailRecipient Recipient { get; set; }
+        public UserNotification Data { get; set; }
+        public UserNotificationRecipient Recipient { get; set; }
     }
 }

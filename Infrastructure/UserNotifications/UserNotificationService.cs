@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.UserNotifications
 {
-    public class UserNotificationService : Dictionary<UserNotificationSendMethod, IUserNotificationSender>, IUserNotificationService
+    public class UserNotificationService : Dictionary<UserNotificationSendMethod, UserNotificationSender>, IUserNotificationService
     {
         public UserNotificationService()
             : base(10)
         {
         }
 
-        public UserNotificationService(IDictionary<UserNotificationSendMethod, IUserNotificationSender> senders)
+        public UserNotificationService(IDictionary<UserNotificationSendMethod, UserNotificationSender> senders)
             : base(senders)
         {
         }
 
-        public Task Send(UserNotification notification, IEnumerable<UserNotificationRecipient> recipients)
+        public async Task Send(UserNotification notification, IEnumerable<UserNotificationRecipient> recipients)
         {
             Console.WriteLine($"Sending '{notification.GetName()}' to {recipients.Count()} recipient(s).");
 

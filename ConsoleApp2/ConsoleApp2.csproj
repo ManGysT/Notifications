@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultSettingsManager.cs" />
-    <Compile Include="NotificationServiceFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,17 +53,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.Services\Core.Services.csproj">
-      <Project>{61082920-e3ef-4204-aae7-cd6277276f07}</Project>
-      <Name>Core.Services</Name>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{4BD17197-18B4-4A0A-A134-3D58E699E589}</Project>
+      <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Notification.Email\Notification.Email.csproj">
-      <Project>{2443123d-89c2-4a15-a425-15f981c1c4cc}</Project>
-      <Name>Notification.Email</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Notifications\Notifications.csproj">
-      <Project>{A80BB563-8D2A-4E37-B7C5-D9C9E219B9FF}</Project>
-      <Name>Notifications</Name>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{7193d78a-c2d7-4ef1-85c3-b400d83b343e}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

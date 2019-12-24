@@ -1,7 +1,7 @@
-﻿using Core.Services;
-using Core.Services.Notifications;
-using Notification;
-using Notifications;
+﻿using Core.Common.Interfaces;
+using Core.UserNotifications.Models;
+using Core.UserNotifications.Models.Notifications;
+using Infrastructure.UserNotifications;
 using System;
 using System.Collections.Generic;
 
@@ -25,13 +25,13 @@ namespace ConsoleApp2
             var notification = GetNotification();
             var recipients = GetRecipients();
 
-            var service = NotificationServiceFactory.Create(settings);
+            var service = UserNotificationServiceFactory.Create(settings);
             var task = service.Send(notification, recipients)
                 ;
             task.Wait();
         }
 
-        static INotification GetNotification()
+        static UserNotification GetNotification()
         {
             return new MyNotification
             {
@@ -40,13 +40,13 @@ namespace ConsoleApp2
             };
         }
 
-        static IEnumerable<IRecipient> GetRecipients()
+        static IEnumerable<UserNotificationRecipient> GetRecipients()
         {
-            var recipients = new IRecipient[1];
+            var recipients = new UserNotificationRecipient[1];
 
             for (int i = 0; i < recipients.Length; i++)
             {
-                recipients[i] = new NotificationRecipient
+                recipients[i] = new UserNotificationRecipient
                 {
                     Email = i % 2 == 1 || true ? $"igortomilov+{i}@gmail.com" : null,
                     EmailName = $"Igor Tomilov {i}",

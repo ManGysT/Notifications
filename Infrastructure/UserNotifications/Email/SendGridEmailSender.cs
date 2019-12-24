@@ -29,7 +29,7 @@ namespace Infrastructure.UserNotifications.Email
             await Task.WhenAll(tasks);
         }
 
-        private Task PrepareSendEmailTask(INotification notification, IEmailRecipient recipient)
+        private Task PrepareSendEmailTask(UserNotification notification, UserNotificationRecipient recipient)
         {
             var emailSubject = EmailTemplate.GetSubject(notification);
             var emailMessageContent = EmailTemplate.CompileTemplate(notification, recipient);

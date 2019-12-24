@@ -5,12 +5,6 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{D5C21C08-9ADF-4F86-81F5-A720F1447949}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Services", "Core.Services\Core.Services.csproj", "{61082920-E3EF-4204-AAE7-CD6277276F07}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notifications", "Notifications\Notifications.csproj", "{A80BB563-8D2A-4E37-B7C5-D9C9E219B9FF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Email", "Notification.Email\Notification.Email.csproj", "{2443123D-89C2-4A15-A425-15F981C1C4CC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{4BD17197-18B4-4A0A-A134-3D58E699E589}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{7193D78A-C2D7-4EF1-85C3-B400D83B343E}"
@@ -25,18 +19,6 @@ Global
 		{D5C21C08-9ADF-4F86-81F5-A720F1447949}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5C21C08-9ADF-4F86-81F5-A720F1447949}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5C21C08-9ADF-4F86-81F5-A720F1447949}.Release|Any CPU.Build.0 = Release|Any CPU
-		{61082920-E3EF-4204-AAE7-CD6277276F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61082920-E3EF-4204-AAE7-CD6277276F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61082920-E3EF-4204-AAE7-CD6277276F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61082920-E3EF-4204-AAE7-CD6277276F07}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A80BB563-8D2A-4E37-B7C5-D9C9E219B9FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A80BB563-8D2A-4E37-B7C5-D9C9E219B9FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A80BB563-8D2A-4E37-B7C5-D9C9E219B9FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A80BB563-8D2A-4E37-B7C5-D9C9E219B9FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2443123D-89C2-4A15-A425-15F981C1C4CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2443123D-89C2-4A15-A425-15F981C1C4CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2443123D-89C2-4A15-A425-15F981C1C4CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2443123D-89C2-4A15-A425-15F981C1C4CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4BD17197-18B4-4A0A-A134-3D58E699E589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4BD17197-18B4-4A0A-A134-3D58E699E589}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BD17197-18B4-4A0A-A134-3D58E699E589}.Release|Any CPU.ActiveCfg = Release|Any CPU
